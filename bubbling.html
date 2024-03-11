@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .ele {
+          border: 20px solid;
+          padding: 50px;
+          animation: rotateBorder 5s infinite linear;
+    }
+    @keyframes rotateBorder {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    
+</style>
+</head>
+<body>
+    <form id="myform" class="ele">
+        <div id="main" class="ele">
+            <!-- use onclick="event.stopPropagation() in below line to stop propagation (not mandatory to use)"-->
+            <p id="p1" class="ele" ></p>
+            
+        </div>
+    </form>
+
+    <script>
+        p1.addEventListener("click",function(){
+            this.style.borderColor = 'red';
+        });
+
+        main.addEventListener("click",function(){
+            this.style.borderColor = 'green';
+        });
+
+        myform.addEventListener("click",function(){
+            this.style.borderColor = 'blue';
+        });
+    </script>
+</body>
+</html>

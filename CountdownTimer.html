@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown timer</title>
+    <style>
+        body {
+            background-image: url('3.jpg'); 
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px; /* Adjust as needed */
+        }
+        
+        #timer {
+            font-size: 24px;
+            padding: 10px;
+            background-color:rgb(179, 245, 245); 
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        #buttons {
+            margin-bottom: 20px; /* Add some spacing between buttons and timer */
+        }
+    </style>
+</head>
+<body>
+
+<div id="timer"></div>
+<div id="buttons">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+</div>
+<script>
+    let intervalId = null; // Initialize intervalId to null
+
+    // Set the countdown time in minutes
+    const countdownTimeInMinutes = 1;
+    
+    // Calculate total seconds
+    let totalSeconds = countdownTimeInMinutes * 60;
+    
+    // Get the timer element
+    const timerElement = document.getElementById('timer');
+    
+    // Function to update the timer
+    function updateTimer() {
+        const minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        
+        // Add leading zero if seconds is less than 10
+        if (seconds < 1) {
+            seconds = '0' + seconds;
+        }
+        
+        // Display the remaining time
+        timerElement.textContent = `Time Remaining: ${minutes}:${seconds}`;
+        
+        // Decrement totalSeconds
+        totalSeconds--;
+        
+        // Check if timer has reached zero
+        if (totalSeconds < 0) {
+            clearInterval(intervalId);
+            timerElement.textContent = "Time is up!";
+            timerElement.style.color = 'red';
+        }
+    }
+    function startTimer() {
+        if (intervalId === null) { // Check if timer is not already running
+            intervalId = setInterval(updateTimer, 1000);
+        }
+    }
+
+    function stopTimer() {
+        clearInterval(intervalId);
+        intervalId = null; // Reset intervalId to null
+    }
+    // Call updateTimer function every second
+    intervalId = setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

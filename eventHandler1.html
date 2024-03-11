@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Attendee Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .event-container {
+            margin-right: 20px;
+        }
+        .event-container h2 {
+            margin-top: 0;
+        }
+        .student-list {
+            list-style: none;
+            padding: 0;
+        }
+        .student-list li {
+            margin-bottom: 5px;
+        }
+        .btn {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="event-container">
+        <h2>Math Event</h2>
+        <ul class="student-list" id="mathStudents">
+            <li>Prince</li>
+            <li>Sudhanshu</li>
+            <li>Rahul</li>
+        </ul>
+        <input type="text" id="mathStudentInput" placeholder="Enter student name">
+        <button class="btn" onclick="addStudent('math')">Add Student</button>
+        <button class="btn" onclick="removeStudent('math')">Remove Student</button>
+    </div>
+
+    <div class="event-container">
+        <h2>Science Event</h2>
+        <ul class="student-list" id="scienceStudents">
+            <li>Ravi</li>
+            <li>Aditya</li>
+            <li>Shivam</li>
+        </ul>
+        <input type="text" id="scienceStudentInput" placeholder="Enter student name">
+        <button class="btn" onclick="addStudent('science')">Add Student</button>
+        <button class="btn" onclick="removeStudent('science')">Remove Student</button>
+    </div>
+</div>
+
+<script>
+    function addStudent(event) {
+        const inputId = event + 'StudentInput';
+        const inputValue = document.getElementById(inputId).value;
+        const listId = event + 'Students';
+        const studentList = document.getElementById(listId);
+
+        if (inputValue.trim() !== '') {
+            const listItem = document.createElement('li');
+            listItem.textContent = inputValue;
+            studentList.appendChild(listItem);
+            document.getElementById(inputId).value = '';
+        } else {
+            alert('Please enter a valid student name.');
+        }
+    }
+
+    function removeStudent(event) {
+        const inputId = event + 'StudentInput';
+        const inputValue = document.getElementById(inputId).value;
+        const listId = event + 'Students';
+        const studentList = document.getElementById(listId);
+        const listItemToRemove = studentList.querySelector('li'); 
+
+        if (inputValue.trim() !== '') {
+            const removed = studentList.removeChild(listItemToRemove);
+            alert(`Student ${removed.textContent} removed from ${event} event.`);
+            document.getElementById(inputId).value = '';
+        } else {
+            alert('Please enter a valid student name.');
+        }
+    }
+</script>
+
+</body>
+</html>

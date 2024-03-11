@@ -1,0 +1,82 @@
+<!-- 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Date & Time</title>
+</head>
+    
+<body>
+    <button onclick="start()" style="background-color: #077428; width:100px; height:30px">start</button>
+    <button onclick="stop()"  style="background-color: red; width: 100px; height: 30px;">stop</button>
+    <p id="demo"></p>
+    <script>
+        var i;
+
+        function start() {
+            i = setInterval(datetime,1000);                  //1000 i.e., time interval of 1 sec
+        }
+
+        function datetime() {
+            document.getElementById("demo").innerHTML = new Date();
+            //document.getElementById("demo").style.font-size: 70px;
+            //document.getElementById("demo").style.color:blue;
+            //document.getElementById("demo").style.font:style:italic";
+
+            document.getElementById("demo").style.cssText="font-size: 70px; color:red; font:style:italic";  //Instead of above three lines we can directly use style.cssText to use every elements in one line
+        }
+
+        function stop() {
+            clearInterval(i);
+        }
+    </script>
+</body>
+</html> 
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click Game</title>
+</head>
+<body>
+    <button id="clickButton">Click me!</button>
+    <p id="output"></p>
+
+    <script>
+        let clickCount = 0;
+        const maxClicks = 5; // Set the maximum number of clicks
+
+        // Function to handle button click
+        function handleClick() {
+            clickCount++;
+            document.getElementById('output').textContent = `Clicked ${clickCount} times.`;
+
+            if (clickCount >= maxClicks) {
+                // Game over: Stop the interval
+                clearInterval(intervalId);
+                document.getElementById('output').textContent = 'Game over!';
+            }
+        }
+
+        // Attach click event listener to the button
+        document.getElementById('clickButton').addEventListener('click', handleClick);
+
+        // Set an interval to check the click count
+        const intervalId = setInterval(() => {
+            if (clickCount >= maxClicks) {
+                // Game over: Stop the interval
+                clearInterval(intervalId);
+                document.getElementById('output').textContent = 'Game over!';
+            }
+        }, 100); // Check every 100 milliseconds
+    </script>
+</body>
+</html>

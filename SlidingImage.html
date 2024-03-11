@@ -1,0 +1,108 @@
+<!--
+
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    
+    </style>
+    
+</head>
+<body style="margin: 0">
+    <img name="slide" width="1182px" height="592px">
+
+    <script>
+        var i = 0;
+        var images = Array();
+        images[0]='1.jpg';
+        images[1]='2.jpg';
+        images[2]='5.jpg';
+        images[3]='4.jpg';
+
+        function changeImage(){
+            document.slide.src = images[i];
+            if(i < images.length-1){
+                i++;
+            }
+            else{
+                i=0;
+            }
+
+            setTimeout("changeImage()", 1000);
+            //setTimeout(changeImage,1000);  //this is also correct
+        }
+        // Initial call to start the slideshow
+        changeImage();
+    </script>
+</body>
+</html>
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    <style>
+        body {
+            margin: 0;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 8px 16px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <img name="slide" id="slide">
+    <div id="buttons">
+        <button onclick="previousSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        var i = 0;
+        var images = ['1.jpg', '2.jpg', '5.jpg', '4.jpg'];
+        var slide = document.getElementById('slide');
+
+        function changeImage(index) {
+            if (index >= 0 && index < images.length) {
+                i = index;
+                slide.src = images[i];
+            }
+        }
+
+        function nextSlide() {
+            i = (i + 1) % images.length;
+            slide.src = images[i];
+        }
+
+        function previousSlide() {
+            i = (i - 1 + images.length) % images.length;
+            slide.src = images[i];
+        }
+
+        // Initial call to start the slideshow
+        changeImage(i);
+    </script>
+</body>
+</html>
